@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   const links = [
-    { id: 1, title: 'Dashboard', path: '/', icon: Home },
+    { id: 1, title: 'Dashboard', path: '/dashboard', icon: Home },
     { id: 2, title: 'FAQ', path: '/faq', icon: HelpCircle },
   ];
 
