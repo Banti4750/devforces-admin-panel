@@ -6,15 +6,15 @@ export const MainContext = createContext(null);
 export const MainContextProvider = ({ children }) => {
   const baseurl = 'http://localhost:9000/api/admin'
   const [token, settoken] = useState(null);
-  const [user,setuser] = useState(null)
+  const [user, setuser] = useState(null)
   const [issidebar, setissidebar] = useState(true);
 
-  const getCookies=()=>{
-    const tokendata=Cookies.get('token')
-    const userdata= Cookies.get('user')
+  const getCookies = () => {
+    const tokendata = Cookies.get('token')
+    const userdata = Cookies.get('user')
     console.log(userdata)
     settoken(tokendata)
-    if(userdata){
+    if (userdata) {
       setuser(JSON.parse(userdata))
     }
   }
@@ -22,7 +22,7 @@ export const MainContextProvider = ({ children }) => {
   // Detect screen size and set issidebar accordingly
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <1024) {
+      if (window.innerWidth < 1024) {
         setissidebar(false);
       } else {
         setissidebar(true);
@@ -35,12 +35,12 @@ export const MainContextProvider = ({ children }) => {
     return () => window.removeEventListener("resize", handleResize); // cleanup
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     getCookies()
-  },[])
+  }, [])
 
   return (
-    <MainContext.Provider value={{ token, settoken, issidebar, setissidebar,baseurl,getCookies }}>
+    <MainContext.Provider value={{ token, settoken, issidebar, setissidebar, baseurl, getCookies }}>
       {children}
     </MainContext.Provider>
   );
