@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 createRoot(document.getElementById('root')).render(
- <MainContextProvider>
+  <MainContextProvider>
     <App />
     <ToastContainer
       position="top-center"
@@ -20,7 +20,8 @@ createRoot(document.getElementById('root')).render(
       draggable
       pauseOnHover
       theme="light"
-      transition={'Bounce'}
     />
   </MainContextProvider>,
 )
+
+

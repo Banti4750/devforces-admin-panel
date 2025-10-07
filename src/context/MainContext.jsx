@@ -1,46 +1,56 @@
 import { useState, useEffect, createContext } from "react";
-import Cookies from 'js-cookie'
 
 export const MainContext = createContext(null);
 
 export const MainContextProvider = ({ children }) => {
-  const baseurl = 'http://localhost:9000/api/admin'
-  const [token, settoken] = useState(null);
-  const [user, setuser] = useState(null)
-  const [issidebar, setissidebar] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isSidebar, setIsSidebar] = useState(true);
 
-  const getCookies = () => {
-    const tokendata = Cookies.get('token')
-    const userdata = Cookies.get('user')
-    console.log(userdata)
-    settoken(tokendata)
-    if (userdata) {
-      setuser(JSON.parse(userdata))
+  // 🔹 Fetch user from localStorage or cookies
+  const getUser = () => {
+    try {
+      const userData =
+        localStorage.getItem("userData")
+      if (userData) {
+        const parsed = JSON.parse(userData);
+        setUser(parsed);
+        return parsed;
+      } else {
+        setUser(null);
+      }
+    } catch (err) {
+      console.error("Failed to parse userData:", err);
+      setUser(null);
     }
-  }
+  };
 
-  // Detect screen size and set issidebar accordingly
+  // 🔹 Detect screen size and handle sidebar visibility
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setissidebar(false);
-      } else {
-        setissidebar(true);
-      }
+      setIsSidebar(window.innerWidth >= 1024);
     };
 
     handleResize(); // check on mount
-    window.addEventListener("resize", handleResize); // listen for resize
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize); // cleanup
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // 🔹 Load user data when the component mounts
   useEffect(() => {
-    getCookies()
-  }, [])
+    getUser();
+  }, []);
 
   return (
-    <MainContext.Provider value={{ token, settoken, issidebar, setissidebar, baseurl, getCookies }}>
+    <MainContext.Provider
+      value={{
+        isSidebar,
+        setIsSidebar,
+        user,
+        setUser,
+        getUser,
+      }}
+    >
       {children}
     </MainContext.Provider>
   );

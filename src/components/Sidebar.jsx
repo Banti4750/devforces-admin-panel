@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Home, HelpCircle } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
+  const userData =
+    localStorage.getItem("userData")
+  const parsed = JSON.parse(userData);
   const links = [
     { id: 1, title: 'Dashboard', path: '/dashboard', icon: Home },
     { id: 2, title: 'FAQ', path: '/faq', icon: HelpCircle },
@@ -46,8 +49,8 @@ const Sidebar = () => {
             AD
           </div>
           <div className="flex-1 text-sm">
-            <p className="font-medium">Admin User</p>
-            <p className="text-xs text-muted-foreground">admin@panel.com</p>
+            <p className="font-medium">{parsed.name || "user"} </p>
+            <p className="text-xs text-muted-foreground">{parsed.email}</p>
           </div>
         </div>
       </div>
