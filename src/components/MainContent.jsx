@@ -7,6 +7,7 @@ import Location from './Location';
 import Dashboard from '../pages/Dashboard';
 import Faq from '../pages/Faq';
 import Auth from '../authpage/Auth';
+import Problem from '../pages/Problem';
 
 const Layout = () => {
   const { issidebar, setissidebar } = useContext(MainContext);
@@ -49,6 +50,7 @@ const Layout = () => {
         <main className="flex-1 overflow-y-auto bg-muted/40 p-4 md:p-6 lg:p-8">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/problem" element={<Problem />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
