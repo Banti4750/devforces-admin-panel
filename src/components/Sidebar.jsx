@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Home, HelpCircle, ParkingCircle } from 'lucide-react';
+import { Home, HelpCircle, ParkingCircle, Trophy } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -9,7 +9,8 @@ const Sidebar = () => {
   const links = [
     { id: 1, title: 'Dashboard', path: '/dashboard', icon: Home },
     { id: 2, title: 'FAQ', path: '/faq', icon: HelpCircle },
-    { id: 3, title: "Problem", path: '/problem', icon: ParkingCircle }
+    { id: 3, title: "Problem", path: '/problem', icon: ParkingCircle },
+    { id: 4, title: "Contest", path: "/contest", icon: Trophy }
   ];
 
   return (

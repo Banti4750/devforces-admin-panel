@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Edit2, Trash2, X, Save, Eye, AlertCircle } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL
+// {import.meta.env.VITE_API_URL}
 
 const Problem = () => {
     const [problems, setProblems] = useState([]);
@@ -286,7 +287,7 @@ const Problem = () => {
         };
 
         return (
-            <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
+            <div className="fixed inset-0 bg-black/100 flex items-center justify-center p-4 z-50">
                 <div className=" rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
                     <div className="sticky top-0  border-b p-6 flex items-center justify-between z-50">
                         <h3 className="text-xl font-semibold">
