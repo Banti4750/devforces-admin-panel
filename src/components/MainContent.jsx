@@ -10,6 +10,7 @@ import Auth from '../authpage/Auth';
 import Problem from '../pages/Problem';
 import Contest from '../pages/Contest';
 import Tag from '../pages/Tag';
+import UserFeedback from '../pages/UserFeedback';
 
 const Layout = () => {
   const { issidebar, setissidebar } = useContext(MainContext);
@@ -56,6 +57,7 @@ const Layout = () => {
             <Route path="/faq" element={<Faq />} />
             <Route path='/contest' element={<Contest />} />
             <Route path='/tag' element={<Tag />} />
+            <Route path="/userfeedback" element={<UserFeedback />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </main>
